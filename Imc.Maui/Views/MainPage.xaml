@@ -54,11 +54,11 @@
                 <Button 
         Text="calcular" 
         BackgroundColor="Green"
-        Command="{Binding Path=Calcularcommand}"
+        Command="{Binding Path=CalcularCommand}"
         />
                 <Button 
         Text="limpiar"
-        Command="{Binding Path= Limpiarcommand}"/>
+        Command="{Binding Path= LimpiarCommand}"/>
             </HorizontalStackLayout>
             <Border 
           Grid.Row="2"
@@ -81,14 +81,16 @@
          Text="{Binding Path=Imc}" 
          HorizontalOptions="Center" 
          FontSize="Medium" 
-         FontAttributes="Bold"/>
+         FontAttributes="Bold"
+                        TextColor="White"/>
                     <Label 
              Text="la situacion nutricional de la persona es:"/>
                     <Label
          Text="{Binding Path=EstadoNutricional}" 
          HorizontalOptions="Center" 
          FontSize="Medium" 
-         FontAttributes="Bold"/>
+         FontAttributes="Bold"
+                        TextColor="White"/>
                 </VerticalStackLayout>
             </Border>
         </Grid>

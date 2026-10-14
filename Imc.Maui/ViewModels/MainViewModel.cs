@@ -1,73 +1,30 @@
-﻿using Imc.Maui.Models;
-using System.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Imc.Maui.Models;
 using System.Windows.Input;
 
 namespace Imc.Maui.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public partial class MainViewModel : ObservableObject
     {
+        [ObservableProperty]
         private string _peso;
+        [ObservableProperty]
         private string _estatura;
+        [ObservableProperty]
         private string _imc;
+        [ObservableProperty]
         private string _estadoNutricional;
-        public string Peso
-        {
-            get => _peso;
-            set
-            {
-                if (_peso != value)
-                {
-                    _peso = value;
-                    OnPropertyChanged(nameof(Peso));
-                }
-            }
-        }
-        public string Estatura
-        {
-            get => _estatura;
-            set
-            {
-                if (_estatura != value)
-                {
-                    _estatura = value;
-                    OnPropertyChanged(nameof(Estatura));
-                }
-            }
-        }
-        public string Imc
-        {
-            get => _imc;
-            set
-            {
-                if (_imc != value)
-                {
-                    _imc = value;
-                    OnPropertyChanged(nameof(Imc));
-                }
-            }
-        }
-        public string EstadoNutricional
-        {
-            get => _estadoNutricional;
-            set
-            {
-                if (_estadoNutricional != value)
-                {
-                    _estadoNutricional = value;
-                    OnPropertyChanged(nameof(EstadoNutricional));
-                }
-            }
-        }
-        public ICommand Calcularcommand { get; private set; }
-        public ICommand Limpiarcommand { get; private set; }
+        
+       
         public MainViewModel()
         {
-            LimpiarDatos();
-            Calcularcommand = new Command(CalcularResultados);
-            Limpiarcommand = new Command(LimpiarDatos);
-
+            Limpiar();
+           
         }
-        private void CalcularResultados()
+
+        [RelayCommand]
+        private void Calcular()
         {
             decimal peso;
             decimal estatura;
@@ -81,7 +38,8 @@ namespace Imc.Maui.ViewModels
             }
         }
 
-        private void LimpiarDatos()
+        [RelayCommand]
+        private void Limpiar()
         {
             Peso = string.Empty;
             Estatura = string.Empty;
@@ -90,16 +48,6 @@ namespace Imc.Maui.ViewModels
         }
 
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-
-
-        }
+        
     }
 }
